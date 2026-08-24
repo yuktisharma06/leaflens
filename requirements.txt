@@ -1,3 +1,5 @@
 datasets
 matplotlib
 Pillow
+tensorflow
+numpy
