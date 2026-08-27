@@ -28,6 +28,12 @@ train_data = train_data.class_encode_column(
     "class_idx"
 )
 
+print("\n--- CLASS NAMES ---")
+
+print(
+    train_data.features["class_idx"].names
+)
+
 train_val_split = train_data.train_test_split(
     test_size=0.10,
     seed=42,
@@ -36,11 +42,6 @@ train_val_split = train_data.train_test_split(
 
 train_data = train_val_split["train"]
 validation_data = train_val_split["test"]
-
-print("\nDataset sizes:")
-print("Training:", len(train_data))
-print("Validation:", len(validation_data))
-
 
 # =========================
 # 3. CREATE SMALL SUBSETS
@@ -129,12 +130,12 @@ def preprocess(image, label):
 
 train_tf = train_tf.map(
     preprocess,
-    num_parallel_calls=tf.data.AUTOTUNE
+    num_parallel_calls=1
 )
 
 validation_tf = validation_tf.map(
     preprocess,
-    num_parallel_calls=tf.data.AUTOTUNE
+    num_parallel_calls=1
 )
 
 
@@ -178,7 +179,7 @@ def augment(image, label):
 
 train_tf = train_tf.map(
     augment,
-    num_parallel_calls=tf.data.AUTOTUNE
+    num_parallel_calls=1
 )
 
 print("\nData augmentation applied to training dataset.")
@@ -188,7 +189,7 @@ print("\nData augmentation applied to training dataset.")
 # 9. SHUFFLE AND BATCH
 # =========================
 
-BATCH_SIZE = 32
+BATCH_SIZE = 16
 
 train_tf = train_tf.shuffle(
     buffer_size=1000,
@@ -208,13 +209,9 @@ validation_tf = validation_tf.batch(
 # 10. PREFETCH DATA
 # =========================
 
-train_tf = train_tf.prefetch(
-    tf.data.AUTOTUNE
-)
+train_tf = train_tf.prefetch(1)
 
-validation_tf = validation_tf.prefetch(
-    tf.data.AUTOTUNE
-)
+validation_tf = validation_tf.prefetch(1)
 
 print("\nShuffling, batching and prefetching completed successfully.")
 
@@ -245,26 +242,26 @@ for images, labels in train_tf.take(1):
 # 12. VISUALIZE AUGMENTED IMAGES
 # =========================
 
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 
-for images, labels in train_tf.take(1):
+# for images, labels in train_tf.take(1):
 
-    plt.figure(figsize=(10, 10))
+#     plt.figure(figsize=(10, 10))
 
-    for i in range(9):
+#     for i in range(9):
 
-        plt.subplot(3, 3, i + 1)
+#         plt.subplot(3, 3, i + 1)
 
-        plt.imshow(images[i].numpy())
+#         plt.imshow(images[i].numpy())
 
-        plt.title(f"Class: {labels[i].numpy()}")
+#         plt.title(f"Class: {labels[i].numpy()}")
 
-        plt.axis("off")
+#         plt.axis("off")
 
-    plt.tight_layout()
+#     plt.tight_layout()
 
-    plt.show()
+#     plt.show()
 
 
 # =========================
