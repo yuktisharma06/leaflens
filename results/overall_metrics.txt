@@ -1,0 +1,7 @@
+--- OVERALL EVALUATION RESULTS ---
+
+Accuracy: 0.9331384727804165
+Accuracy (%): 93.31
+Weighted Precision: 0.9341876364785178
+Weighted Recall: 0.9331384727804165
+Weighted F1-score: 0.9327091730939008

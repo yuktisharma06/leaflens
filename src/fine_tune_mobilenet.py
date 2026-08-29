@@ -43,24 +43,86 @@ print("Validation:", len(validation_data))
 
 
 # =========================
-# 3. CREATE SUBSETS
+# 3. CREATE BALANCED SUBSETS
 # =========================
 
-train_subset = train_data.shuffle(
-    seed=42
-).select(
-    range(5000)
+NUM_TRAIN_PER_CLASS = 100
+NUM_VALIDATION_PER_CLASS = 25
+
+train_labels = np.array(
+    train_data["class_idx"]
 )
 
-validation_subset = validation_data.shuffle(
-    seed=42
-).select(
-    range(1000)
+validation_labels = np.array(
+    validation_data["class_idx"]
 )
 
-print("\nSubset sizes:")
-print("Training:", len(train_subset))
-print("Validation:", len(validation_subset))
+
+train_indices = []
+validation_indices = []
+
+
+for class_index in range(38):
+
+    class_train_indices = np.where(
+        train_labels == class_index
+    )[0]
+
+    class_validation_indices = np.where(
+        validation_labels == class_index
+    )[0]
+
+
+    np.random.seed(
+        42 + class_index
+    )
+
+    np.random.shuffle(
+        class_train_indices
+    )
+
+    np.random.shuffle(
+        class_validation_indices
+    )
+
+
+    train_indices.extend(
+        class_train_indices[
+            :NUM_TRAIN_PER_CLASS
+        ]
+    )
+
+    validation_indices.extend(
+        class_validation_indices[
+            :NUM_VALIDATION_PER_CLASS
+        ]
+    )
+
+
+train_subset = train_data.select(
+    train_indices
+).shuffle(
+    seed=42
+)
+
+
+validation_subset = validation_data.select(
+    validation_indices
+).shuffle(
+    seed=42
+)
+
+
+print("\nBalanced subset sizes:")
+print(
+    "Training:",
+    len(train_subset)
+)
+
+print(
+    "Validation:",
+    len(validation_subset)
+)
 
 
 # =========================
@@ -154,32 +216,18 @@ data_augmentation = tf.keras.Sequential([
     ),
 
     tf.keras.layers.RandomRotation(
-        0.05
+        0.10
     ),
 
     tf.keras.layers.RandomZoom(
-        0.05
+        0.10
+    ),
+
+    tf.keras.layers.RandomContrast(
+        0.10
     ),
 
 ])
-
-
-def augment(image, label):
-
-    image = data_augmentation(
-        image,
-        training=True
-    )
-
-    return image, label
-
-
-train_tf = train_tf.map(
-    augment,
-    num_parallel_calls=tf.data.AUTOTUNE
-)
-
-print("\nData augmentation applied to training dataset.")
 
 
 # =========================
@@ -300,10 +348,22 @@ print(
 # 10. FINE-TUNE MODEL
 # =========================
 
+callbacks = [
+
+    tf.keras.callbacks.EarlyStopping(
+        monitor="val_loss",
+        patience=2,
+        restore_best_weights=True
+    )
+
+]
+
+
 history = model.fit(
     train_tf,
     validation_data=validation_tf,
-    epochs=5
+    epochs=8,
+    callbacks=callbacks
 )
 
 
@@ -312,9 +372,9 @@ history = model.fit(
 # =========================
 
 model.save(
-    "models/fine_tuned_mobilenet.keras"
+    "models/improved_fine_tuned_mobilenet.keras"
 )
 
 print(
-    "\nFine-tuned model saved successfully."
+    "\nImproved fine-tuned model saved successfully."
 )
