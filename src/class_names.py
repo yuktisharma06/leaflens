@@ -1,42 +1,40 @@
 CLASS_NAMES = [
-
-    "Apple___Apple_scab",
-    "Apple___Black_rot",
-    "Pepper,_bell___Bacterial_spot",
-    "Pepper,_bell___healthy",
-    "Apple___Cedar_apple_rust",
-    "Potato___Early_blight",
-    "Potato___Late_blight",
-    "Potato___healthy",
-    "Raspberry___healthy",
-    "Soybean___healthy",
-    "Squash___Powdery_mildew",
-    "Strawberry___Leaf_scorch",
-    "Corn_(maize)___healthy",
-    "Strawberry___healthy",
-    "Tomato___Bacterial_spot",
-    "Tomato___Early_blight",
-    "Apple___healthy",
-    "Tomato___Late_blight",
-    "Tomato___Leaf_Mold",
-    "Tomato___Septoria_leaf_spot",
-    "Tomato___Spider_mites Two-spotted_spider_mite",
-    "Tomato___Target_Spot",
-    "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
-    "Grape___Black_rot",
-    "Tomato___Tomato_mosaic_virus",
-    "Tomato___healthy",
-    "Blueberry___healthy",
-    "Cherry_(including_sour)___Powdery_mildew",
-    "Cherry_(including_sour)___healthy",
-    "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot",
-    "Corn_(maize)___Common_rust_",
-    "Corn_(maize)___Northern_Leaf_Blight",
-    "Grape___Esca_(Black_Measles)",
-    "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)",
-    "Grape___healthy",
-    "Orange___Haunglongbing_(Citrus_greening)",
-    "Peach___Bacterial_spot",
-    "Peach___healthy"
-
+    "Apple___Apple_scab",                                      # 0
+    "Apple___Black_rot",                                       # 1
+    "Corn_(maize)___healthy",                                  # 2
+    "Grape___Black_rot",                                       # 3
+    "Grape___Esca_(Black_Measles)",                            # 4
+    "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)",              # 5
+    "Grape___healthy",                                         # 6
+    "Orange___Haunglongbing_(Citrus_greening)",                # 7
+    "Peach___Bacterial_spot",                                  # 8
+    "Peach___healthy",                                         # 9
+    "Pepper,_bell___Bacterial_spot",                           # 10
+    "Pepper,_bell___healthy",                                  # 11
+    "Apple___Cedar_apple_rust",                                # 12
+    "Potato___Early_blight",                                   # 13
+    "Potato___Late_blight",                                    # 14
+    "Potato___healthy",                                        # 15
+    "Raspberry___healthy",                                     # 16
+    "Soybean___healthy",                                       # 17
+    "Squash___Powdery_mildew",                                 # 18
+    "Strawberry___Leaf_scorch",                                # 19
+    "Strawberry___healthy",                                    # 20
+    "Tomato___Bacterial_spot",                                 # 21
+    "Tomato___Early_blight",                                   # 22
+    "Apple___healthy",                                         # 23
+    "Tomato___Late_blight",                                    # 24
+    "Tomato___Leaf_Mold",                                      # 25
+    "Tomato___Septoria_leaf_spot",                             # 26
+    "Tomato___Spider_mites Two-spotted_spider_mite",           # 27
+    "Tomato___Target_Spot",                                    # 28
+    "Tomato___Tomato_Yellow_Leaf_Curl_Virus",                  # 29
+    "Tomato___Tomato_mosaic_virus",                            # 30
+    "Tomato___healthy",                                        # 31
+    "Blueberry___healthy",                                     # 32
+    "Cherry_(including_sour)___Powdery_mildew",                # 33
+    "Cherry_(including_sour)___healthy",                        # 34
+    "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot",      # 35
+    "Corn_(maize)___Common_rust_",                              # 36
+    "Corn_(maize)___Northern_Leaf_Blight"                       # 37
 ]
