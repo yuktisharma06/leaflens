@@ -115,7 +115,7 @@ models/improved_fine_tuned_mobilenet.keras
 From the project root:
 
 ```python
-python -c "from src.pipeline import run_pipeline; print(run_pipeline('path/to/leaf_image.jpg'))"
+python -c "import sys; sys.path.insert(0, 'src'); from pipeline import run_pipeline; print(run_pipeline('path/to/leaf_image.jpg'))"
 ```
 
 ## 📊 Dataset
