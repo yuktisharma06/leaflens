@@ -5,3 +5,5 @@ tensorflow
 numpy
 seaborn
 scikit-learn
+google-genai
+python-dotenv
